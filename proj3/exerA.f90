@@ -8,7 +8,10 @@ PROGRAM exerA1
   !Arquivo de saida
   OPEN(UNIT=2,FILE="velA_out.dat")
 
-  !Ler número de valores de V(0), DeltaT, T
+  !Ler do terminal os valores de:
+  !Velocidade inicial
+  !DeltaT
+  !Tempo total T
   READ(*,*)v
   READ(*,*)dt
   READ(*,*)t
@@ -16,6 +19,7 @@ PROGRAM exerA1
   !Escreve primeira linha no arquivo de saída
   WRITE(2,*)0, v
 
+  !Define o número de iterações
   n = INT(t/dt)
 
   !Cálculo iterativo da velocidade
@@ -23,7 +27,10 @@ PROGRAM exerA1
     !Calcula a nova velocidade
     v = v + p/(m*v)*dt
     t = i*dt
-    !Escreve o valor de velocidade para cada t 
+    !Escreve o valor de velocidade para cada t
     WRITE(2,*)t, v
   END DO
+
+  !Fecha arquivo de saída
+  CLOSE(2)
 END PROGRAM exerA
