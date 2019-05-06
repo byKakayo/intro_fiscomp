@@ -5,8 +5,11 @@ PROGRAM exerC2
   REAL(8) :: m, l, dt, t, theta, omega
   INTEGER :: i, n !Contador e número de iterações
 
+  REAL(8) :: h, K, U
+
   !Arquivo de saida p/ geração do gráfico
   OPEN(UNIT=2,FILE="exerC2_out.dat")
+  OPEN(UNIT=3,FILE="exerC2E_out.dat")
 
   !Ler do terminal os valores de:
   !Tempo total T
@@ -19,6 +22,9 @@ PROGRAM exerC2
   READ(*,*)m
   READ(*,*)l
   READ(*,*)theta
+
+  !Converte graus para radianos
+  theta = theta*(pi/180)
 
   !Escreve primeira linha no arquivo de saída
   WRITE(2,*)0, theta
@@ -40,8 +46,15 @@ PROGRAM exerC2
     END IF
     !Escreve o valor do ângulo para cada t
     WRITE(2,*)t, theta
+
+    h = l*(1 - cos(theta))
+    U = m*g*h
+    K = 0.5*m*omega**2
+
+    WRITE(3,*)t, U+K, U, K
   END DO
 
   !Fecha arquivo de saída
   CLOSE(2)
+  CLOSE(3)
 END PROGRAM exerC2

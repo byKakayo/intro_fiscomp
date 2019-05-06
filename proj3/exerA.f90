@@ -1,4 +1,4 @@
-PROGRAM exerA1
+PROGRAM exerA
   IMPLICIT NONE
   REAL(8), PARAMETER :: m = 70.0 !Massa kg
   REAL(8), PARAMETER :: p = 400.0 !Potência W

@@ -28,15 +28,13 @@ PROGRAM exerB
 
   DO i = 1, n
     vi = v + dt*p/(m*v) - dt*c*rho*a*(v**2)/m
-    da = da + (vi+v)*dt/2
+    da = da + vi*dt/2
     !Verifica se chegou na velocidade terminal
-    IF(vi == v)THEN
-      tf = i*dt
-      da = da + v*(n - i)*dt
-      DO x = i, n
-        !Escreve o valor de velocidade para cada t
-        WRITE(2,*)x*dt, v
-      END DO
+    IF(abs(vi - v)<= epsilon(vi))THEN
+      IF (tf == 0) THEN
+        tf = i*dt
+      END IF
+      da = da + v*dt
     END IF
     v = vi
     !Escreve o valor de velocidade para cada t
