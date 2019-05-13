@@ -14,8 +14,12 @@ PROGRAM exer1
   READ(*,*)lambda
   READ(*,*)dt
 
-  DO i = 0,
+WRITE(2, *)0, n
+
+  DO i = 1,
+    t = i*dt
     n = -lambda*n*dt
+    WRITE(2, *)t, n
   END DO
   !rand()
 
