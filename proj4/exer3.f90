@@ -1,7 +1,7 @@
 PROGRAM exer1
   IMPLICIT NONE
   REAL(8) :: dt, lambda, t
-  INTEGER(8) :: n, i
+  INTEGER(8) :: n, i, x
 
   !Arquivo de entrada
   OPEN(UNIT=1,FILE="decai_in")
@@ -25,7 +25,11 @@ PROGRAM exer1
   !Escreve a primeira linha no arquivo de saída
   WRITE(2, *)0, n
 
-  DO i = 1,
+  !Define o número de iterações
+  x = INT(t/dt)
+
+  DO i = 1, x
+    n = n - n*lambda*dt
     t = i*dt
     !Escreve o valor de N para cada t no arquivo de saída
     WRITE(2, *)t, n
